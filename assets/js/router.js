@@ -54,53 +54,11 @@ function renderHome() {
   return `
     <section class="hero">
       <div class="hero-text">
-        <h1>Contemporary craft, made to be worn.</h1>
-        <p>BOMEYO designs considered ready-to-wear and wedding pieces for women and men, built on hand-finished detail.</p>
+        <h1>About BOMEYO</h1>
+        <p>BOMEYO designs considered ready-to-wear and wedding pieces for women and men — thoughtfully made, hand-finished, and built to be worn often, not just once.</p>
       </div>
       ${heroSliderMarkup()}
     </section>
-  `;
-}
-
-function renderAbout() {
-  return `
-    <div class="container">
-      <div class="page-header">
-        <h1>About Us</h1>
-        <p>Who we are and what we stand for.</p>
-      </div>
-
-      <section class="about-content">
-        <div>
-          <h2>Our mission</h2>
-          <p>
-            BOMEYO exists to make thoughtfully made clothing feel effortless —
-            for everyday wear and for the biggest days. Every piece is designed
-            to be worn often, not just once.
-          </p>
-          <p>
-            We work closely with our makers, keep our collections focused, and
-            put craft ahead of trend.
-          </p>
-        </div>
-        <img src="https://placehold.co/600x450/ede6da/2c190d?text=BOMEYO" alt="About BOMEYO" />
-      </section>
-
-      <div class="values-grid">
-        <div class="value-card">
-          <h3>Considered design</h3>
-          <p>Fewer pieces, made with more intention. Nothing in the collection is filler.</p>
-        </div>
-        <div class="value-card">
-          <h3>Hand-finished detail</h3>
-          <p>From everyday knitwear to wedding sets, the finishing is done by hand.</p>
-        </div>
-        <div class="value-card">
-          <h3>For women and men</h3>
-          <p>Ready-to-wear and wedding collections designed side by side, not as an afterthought.</p>
-        </div>
-      </div>
-    </div>
   `;
 }
 
@@ -136,38 +94,178 @@ function renderStory() {
   `;
 }
 
-const SHOWS = [
-  { title: "BOMEYO Wedding Edit — Preview Showcase", meta: "Coming soon · Mumbai" },
-  { title: "Ready to Wear — Season Launch", meta: "Coming soon · Delhi" },
-  { title: "The Family Co-ords Showcase", meta: "Coming soon · Bengaluru" },
+function mediaCard(item) {
+  return `
+    <div class="media-card">
+      <div class="media-card-image">
+        <img src="${item.image}" alt="${item.title}" loading="lazy" />
+      </div>
+      ${item.tag ? `<span class="media-card-tag">${item.tag}</span>` : ""}
+      <h3>${item.title}</h3>
+      <p>${item.text}</p>
+    </div>
+  `;
+}
+
+function mediaImageUrl(name, bg) {
+  return `https://placehold.co/600x800/${bg}/2c190d?text=${encodeURIComponent(name)}`;
+}
+
+const COLLECTIONS = [
+  {
+    tag: "Seasonal",
+    title: "Spring/Summer 2025",
+    text: "Lightweight fabrics and warm-weather silhouettes for the new season.",
+    image: mediaImageUrl("Spring/Summer 2025", "ede6da"),
+  },
+  {
+    tag: "Seasonal",
+    title: "Wedding Season 2025",
+    text: "This year's wedding edit, built around considered, hand-finished pieces.",
+    image: mediaImageUrl("Wedding Season 2025", "e2d9c8"),
+  },
+  {
+    tag: "Previous",
+    title: "Festive Edit 2024",
+    text: "Last year's festive collection, while stocks last.",
+    image: mediaImageUrl("Festive Edit 2024", "ede6da"),
+  },
+  {
+    tag: "Previous",
+    title: "Monsoon Edit 2024",
+    text: "Relaxed, weather-ready pieces from last year's monsoon drop.",
+    image: mediaImageUrl("Monsoon Edit 2024", "e2d9c8"),
+  },
+  {
+    tag: "Limited Edition",
+    title: "The Anniversary Capsule",
+    text: "A small capsule marking the studio's anniversary — limited to a handful of pieces.",
+    image: mediaImageUrl("The Anniversary Capsule", "ede6da"),
+  },
+  {
+    tag: "Limited Edition",
+    title: "The Ten-Piece Edit",
+    text: "Ten pieces, each made in extremely limited numbers.",
+    image: mediaImageUrl("The Ten-Piece Edit", "e2d9c8"),
+  },
 ];
 
-function renderShows() {
-  const items = SHOWS.map(
-    (show) => `
-      <div class="show-item">
-        <h3>${show.title}</h3>
-        <span class="show-meta">${show.meta}</span>
+function renderCollections() {
+  return `
+    <div class="container">
+      <div class="page-header">
+        <h1>Collections</h1>
+        <p>Previous seasons, seasonal drops, and limited editions.</p>
+      </div>
+      <div class="media-grid">${COLLECTIONS.map(mediaCard).join("")}</div>
+    </div>
+  `;
+}
+
+const SHOWS = [
+  {
+    title: "BOMEYO Wedding Edit — Preview Showcase",
+    text: "A first look at the wedding edit, shown to press and stockists ahead of the season.",
+    image: mediaImageUrl("Wedding Edit Showcase", "ede6da"),
+  },
+  {
+    title: "Ready to Wear — Season Launch",
+    text: "The new ready-to-wear line, presented in a small studio showing.",
+    image: mediaImageUrl("Season Launch", "e2d9c8"),
+  },
+  {
+    title: "The Family Co-ords Showcase",
+    text: "Matching sets for the whole family, shown as part of the wedding season preview.",
+    image: mediaImageUrl("Family Co-ords Showcase", "ede6da"),
+  },
+];
+
+const CLIENTS = [
+  {
+    title: "Studio Aria",
+    text: "Boutique stockist based in Mumbai, carrying the full ready-to-wear line.",
+    image: mediaImageUrl("Studio Aria", "e2d9c8"),
+  },
+  {
+    title: "The Cotton Room",
+    text: "Concept store in Bengaluru focused on considered, everyday clothing.",
+    image: mediaImageUrl("The Cotton Room", "ede6da"),
+  },
+  {
+    title: "Loom & Co.",
+    text: "Delhi concept store stocking BOMEYO's wedding and ready-to-wear pieces.",
+    image: mediaImageUrl("Loom & Co.", "e2d9c8"),
+  },
+];
+
+const PROJECTS = [
+  {
+    title: "Heritage Weaves Collaboration",
+    text: "A textile research project with local artisan cooperatives, focused on traditional weaving techniques.",
+    image: mediaImageUrl("Heritage Weaves", "ede6da"),
+  },
+  {
+    title: "Sustainable Dyeing Initiative",
+    text: "An ongoing effort to source natural dyes and reduce the studio's environmental footprint.",
+    image: mediaImageUrl("Sustainable Dyeing", "e2d9c8"),
+  },
+  {
+    title: "Made-to-Measure Pilot",
+    text: "A small pilot program offering made-to-measure fittings for wedding clients.",
+    image: mediaImageUrl("Made-to-Measure Pilot", "ede6da"),
+  },
+];
+
+const HIGHLIGHT_TABS = [
+  { id: "shows", label: "Shows", items: SHOWS },
+  { id: "clients", label: "Clients", items: CLIENTS },
+  { id: "projects", label: "Projects", items: PROJECTS },
+];
+
+function renderHighlights() {
+  const buttons = HIGHLIGHT_TABS.map(
+    (tab, i) => `<button class="tab-button${i === 0 ? " active" : ""}" data-tab="${tab.id}">${tab.label}</button>`
+  ).join("");
+
+  const panels = HIGHLIGHT_TABS.map(
+    (tab, i) => `
+      <div class="tab-panel${i === 0 ? " active" : ""}" data-tab-panel="${tab.id}">
+        <div class="media-grid">${tab.items.map(mediaCard).join("")}</div>
       </div>
     `
   ).join("");
 
   return `
     <div class="container">
-      <div class="page-header">
-        <h1>Shows</h1>
-        <p>Where to see BOMEYO next.</p>
+      <div class="tabs" data-highlights-tabs>
+        <div class="tab-buttons">${buttons}</div>
+        ${panels}
       </div>
-      <div class="shows-list">${items}</div>
     </div>
   `;
 }
 
+function initHighlightsTabs() {
+  const root = document.querySelector("[data-highlights-tabs]");
+  if (!root) return;
+
+  const buttons = Array.from(root.querySelectorAll(".tab-button"));
+  const panels = Array.from(root.querySelectorAll(".tab-panel"));
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-tab");
+      buttons.forEach((b) => b.classList.toggle("active", b === btn));
+      panels.forEach((p) => p.classList.toggle("active", p.getAttribute("data-tab-panel") === target));
+    });
+  });
+}
+
 const STATIC_ROUTES = {
   "/": { title: "BOMEYO — Home", render: renderHome },
-  "/about": { title: "About Us — BOMEYO", render: renderAbout },
   "/story": { title: "The Story — BOMEYO", render: renderStory },
-  "/shows": { title: "Shows — BOMEYO", render: renderShows },
+  "/collections": { title: "Collections — BOMEYO", render: renderCollections },
+  "/highlights": { title: "Highlights — BOMEYO", render: renderHighlights },
 };
 
 function normalizePath() {
@@ -196,6 +294,7 @@ function renderRoute() {
   initActiveNavLink(path);
 
   if (path === "/") initHeroSlider();
+  if (path === "/highlights") initHighlightsTabs();
 }
 
 function initRouter() {

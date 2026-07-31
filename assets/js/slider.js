@@ -67,40 +67,10 @@ function initHeroSlider() {
     onEnded = null;
   }
 
-  function applyHeight(naturalWidth, naturalHeight) {
-    if (!naturalWidth || !naturalHeight) return;
-    const width = root.clientWidth;
-    root.style.height = (width * (naturalHeight / naturalWidth)) + "px";
-  }
-
-  function updateHeightForCurrentSlide() {
-    const media = slideEls[index].querySelector("img, video");
-    if (!media) return;
-
-    if (media.tagName === "IMG") {
-      if (media.naturalWidth) {
-        applyHeight(media.naturalWidth, media.naturalHeight);
-      } else {
-        media.addEventListener("load", () => {
-          if (slideEls[index].contains(media)) applyHeight(media.naturalWidth, media.naturalHeight);
-        }, { once: true });
-      }
-    } else {
-      if (media.videoWidth) {
-        applyHeight(media.videoWidth, media.videoHeight);
-      } else {
-        media.addEventListener("loadedmetadata", () => {
-          if (slideEls[index].contains(media)) applyHeight(media.videoWidth, media.videoHeight);
-        }, { once: true });
-      }
-    }
-  }
-
   function activateCurrentSlide() {
     stopAutoplay();
     detachVideoHandler();
     pauseAllVideos();
-    updateHeightForCurrentSlide();
 
     const video = slideEls[index].querySelector("video");
 
@@ -155,8 +125,6 @@ function initHeroSlider() {
       startAutoplay();
     }
   });
-
-  window.addEventListener("resize", updateHeightForCurrentSlide);
 
   goTo(0);
 }

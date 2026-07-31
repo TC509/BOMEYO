@@ -298,7 +298,7 @@ button {
 .hero {
   min-height: calc(100vh - var(--nav-height));
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   align-items: stretch;
 }
 
@@ -326,25 +326,28 @@ button {
   position: relative;
   overflow: hidden;
   background: var(--color-surface);
-  margin-right: 6%;
   align-self: start;
-  transition: height 0.4s ease;
+  width: 100%;
+  aspect-ratio: 3 / 4;
 }
 
 .slider-track {
   display: flex;
-  align-items: flex-start;
+  height: 100%;
   transition: transform 0.5s ease;
 }
 
 .slider-slide {
   flex: 0 0 100%;
+  height: 100%;
 }
 
 .slider-slide img,
 .slider-slide video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -500,8 +503,7 @@ button {
   text-decoration: underline;
 }
 
-/* ================= About / Story ================= */
-.about-content,
+/* ================= Story ================= */
 .story-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -510,7 +512,6 @@ button {
   padding-bottom: 64px;
 }
 
-.about-content img,
 .story-content img {
   border-radius: 8px;
   width: 100%;
@@ -518,68 +519,102 @@ button {
   object-fit: cover;
 }
 
-.about-content h2,
 .story-content h2 {
   font-size: 1.6rem;
   margin-bottom: 16px;
 }
 
-.about-content p,
 .story-content p {
   color: var(--color-muted);
   margin-bottom: 16px;
 }
 
-.values-grid {
+/* ================= Media card grid (Collections / Highlights) ================= */
+.media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
   padding-bottom: 64px;
 }
 
-.value-card {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 24px;
+.media-card-image {
+  aspect-ratio: 3 / 4;
+  background: var(--color-surface);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 14px;
 }
 
-.value-card h3 {
-  margin-bottom: 8px;
-  font-size: 1.05rem;
+.media-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
 }
 
-.value-card p {
-  color: var(--color-muted);
-  font-size: 0.92rem;
+.media-card:hover .media-card-image img {
+  transform: scale(1.04);
 }
 
-/* ================= Shows ================= */
-.shows-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding-bottom: 64px;
-}
-
-.show-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--color-border);
-  flex-wrap: wrap;
-}
-
-.show-item h3 {
-  font-size: 1.15rem;
+.media-card-tag {
+  display: block;
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 6px;
 }
 
-.show-item .show-meta {
+.media-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.media-card p {
   color: var(--color-muted);
   font-size: 0.9rem;
-  text-align: right;
+}
+
+/* ================= Highlights (tabs) ================= */
+.tabs {
+  padding-top: 40px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px 2px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tab-button:hover,
+.tab-button.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.tab-panel {
+  display: none;
+  padding-top: 32px;
+}
+
+.tab-panel.active {
+  display: block;
 }
 
 /* ================= Footer ================= */
@@ -704,7 +739,6 @@ button {
   }
 
   .hero-slider {
-    margin-right: 6%;
     order: -1;
   }
 
@@ -713,18 +747,18 @@ button {
     text-align: left;
   }
 
-  .about-content,
   .story-content {
     grid-template-columns: 1fr;
   }
 
-  .show-item {
-    flex-direction: column;
-    gap: 4px;
+  .media-grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .show-item .show-meta {
-    text-align: left;
+@media (max-width: 1080px) and (min-width: 861px) {
+  .media-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
