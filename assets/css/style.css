@@ -533,7 +533,10 @@ button {
 .media-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  row-gap: 44px;
+  column-gap: 68px;
+  max-width: 90%;
+  margin: 0 auto;
   padding-bottom: 64px;
 }
 
