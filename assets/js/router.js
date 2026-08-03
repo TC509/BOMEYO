@@ -54,8 +54,19 @@ function renderHome() {
   return `
     <section class="hero">
       <div class="hero-text">
-        <h1>About BOMEYO</h1>
-        <p>BOMEYO designs considered ready-to-wear and wedding pieces for women and men — thoughtfully made, hand-finished, and built to be worn often, not just once.</p>
+        <div class="hero-text-inner">
+          <h1>About Us</h1>
+          <p>The essence of BOM ÈYO stems from a passion for preserving and reimagining the rich textile traditions of Northeast India, especially those of Arunachal Pradesh.</p>
+          <p>Here, every piece tells a story. Your story.</p>
+          <p>We believe in continuous learning and discovering new possibilities in the art of weaving ancestral motifs into contemporary design, blending tradition with your personal narrative while inviting the world to discover the culture of Arunachal Pradesh.</p>
+          <p>BOM ÈYO aims to empower the wearer with comfort, confidence, and versatility encouraging them to embrace who they are and who they aspire to become.</p>
+          <p>Through every garment, BOM ÈYO carries forward the stories of the past while inspiring new ones for generations to come.</p>
+          <div class="hero-tagline">
+            <p>Every piece is a statement.</p>
+            <p>Every piece is a story.</p>
+            <p>Every piece is you.</p>
+          </div>
+        </div>
       </div>
       ${heroSliderMarkup()}
     </section>
@@ -65,31 +76,16 @@ function renderHome() {
 function renderStory() {
   return `
     <div class="container">
-      <div class="page-header">
-        <h1>The Story</h1>
-        <p>How BOMEYO came to be.</p>
-      </div>
-
-      <section class="story-content">
-        <div>
-          <h2>Where it started</h2>
-          <p>
-            BOMEYO began as a small studio experiment: could everyday clothing
-            carry the same care usually reserved for wedding wear? That question
-            shaped everything that followed.
-          </p>
-          <p>
-            What started as a handful of hand-finished pieces made for friends
-            grew into two full collections — Ready to Wear and Wedding Collection —
-            each designed for women and men.
-          </p>
-          <p>
-            Today, BOMEYO is still a studio-first label: small runs, close
-            attention to construction, and a refusal to chase every trend.
-          </p>
+      <div class="story-page">
+        <div class="story-photo">
+          <img src="assets/img/storydp.jpg" alt="Bompie Riram, Founder &amp; Creative Director of BOMÈYO" />
         </div>
-        <img src="https://placehold.co/600x450/e2d9c8/2c190d?text=Our+Story" alt="The BOMEYO story" />
-      </section>
+        <h1 class="story-title">Founder &amp; Creative Director of BOMÈYO</h1>
+        <div class="story-text">
+          <p>BOM ÈYO was founded by Bompie Riram, who hails from Basar, Arunachal Pradesh, India. She graduated from NIFT Mumbai in 2013 with a degree in Textile Design. Today, the brand is based in Itanagar.</p>
+          <p>The name BOM ÈYO is a sacred coalescence of "BOM," the designer's name, and "ÈYO," her late grandmother's name—an enduring tribute that weaves memory, heritage, and lineage into the fabric of the brand.</p>
+        </div>
+      </div>
     </div>
   `;
 }

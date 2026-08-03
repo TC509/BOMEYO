@@ -22,11 +22,21 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.nav-menu {
+  font-family: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 img {
@@ -309,6 +319,11 @@ button {
   padding: 48px 64px;
 }
 
+.hero-text-inner {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
 .hero-text h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
@@ -319,7 +334,20 @@ button {
 .hero-text p {
   color: var(--color-muted);
   font-size: 1.1rem;
-  max-width: 440px;
+  text-align: justify;
+  margin-bottom: 18px;
+}
+
+.hero-tagline {
+  margin-top: 8px;
+}
+
+.hero-tagline p {
+  margin-bottom: 4px;
+}
+
+.hero-tagline p:last-child {
+  margin-bottom: 0;
 }
 
 .hero-slider {
@@ -504,29 +532,41 @@ button {
 }
 
 /* ================= Story ================= */
-.story-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-  padding-bottom: 64px;
+.story-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 0 64px;
+  text-align: center;
 }
 
-.story-content img {
-  border-radius: 8px;
+.story-photo img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  max-width: 380px;
+  border-radius: 8px;
+  margin: 0 auto 32px;
+  display: block;
 }
 
-.story-content h2 {
-  font-size: 1.6rem;
-  margin-bottom: 16px;
+.story-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
 }
 
-.story-content p {
+.story-text {
+  text-align: justify;
+}
+
+.story-text p {
   color: var(--color-muted);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.story-text p:last-child {
+  margin-bottom: 0;
 }
 
 /* ================= Media card grid (Collections / Highlights) ================= */
@@ -752,10 +792,6 @@ button {
   .hero-text {
     padding: 40px 24px;
     text-align: left;
-  }
-
-  .story-content {
-    grid-template-columns: 1fr;
   }
 
   .media-grid {
