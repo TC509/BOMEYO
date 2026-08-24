@@ -3,3 +3,7 @@
 
 # Local Netlify folder
 .netlify
+
+# Raw, uncompressed source photos — compressed working copies live in
+# assets/img/products/. Keep these local only.
+assets/img/SHIRT IMAGES/

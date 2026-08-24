@@ -26,26 +26,39 @@ function renderCategoryPage(slug) {
   const items = PRODUCTS.filter((p) => p.category === slug);
 
   const cards = items
-    .map(
-      (p) => `
-        <div class="product-card">
-          <div class="product-image">
-            <img src="${productImageUrl(p.name)}" alt="${p.name}" loading="lazy" />
-          </div>
-          <h3 class="product-name">${p.name}</h3>
-          <p class="product-price">${formatPrice(p.price)}</p>
+    .map((p) => {
+      const image = p.images ? p.images[0] : productImageUrl(p.name);
+      const price = p.price ? `<p class="product-price">${formatPrice(p.price)}</p>` : "";
+      const inner = `
+        <div class="product-image">
+          <img src="${image}" alt="${p.name}" loading="lazy" />
         </div>
-      `
-    )
+        <h3 class="product-name">${p.name}</h3>
+        ${price}
+      `;
+      return p.slug
+        ? `<a class="product-card" href="#/product/${p.slug}" data-route="/product/${p.slug}">${inner}</a>`
+        : `<div class="product-card">${inner}</div>`;
+    })
     .join("");
 
   return `
     <div class="container">
-      <div class="breadcrumb"><a href="#/" data-route="/">Home</a> / ${meta.parent}</div>
       <div class="page-header">
         <h1>${meta.title}</h1>
       </div>
       <div class="product-grid">${cards || '<p class="empty-state">No products in this category yet.</p>'}</div>
+    </div>
+  `;
+}
+
+function renderProductDetail(slug) {
+  const product = PRODUCT_BY_SLUG[slug];
+  if (!product) return null;
+
+  return `
+    <div class="container">
+      ${productDetailMarkup(product)}
     </div>
   `;
 }
@@ -68,7 +81,7 @@ function renderHome() {
           </div>
         </div>
       </div>
-      ${heroSliderMarkup()}
+      ${heroVideoMarkup()}
     </section>
   `;
 }
@@ -271,11 +284,21 @@ function normalizePath() {
 
 function resolveRoute(path) {
   if (STATIC_ROUTES[path]) return STATIC_ROUTES[path];
-  const slug = PATH_TO_CATEGORY[path];
-  if (slug) {
-    const meta = CATEGORY_META[slug];
-    return { title: `${meta.title} — BOMEYO`, render: () => renderCategoryPage(slug) };
+
+  const categorySlug = PATH_TO_CATEGORY[path];
+  if (categorySlug) {
+    const meta = CATEGORY_META[categorySlug];
+    return { title: `${meta.title} — BOMEYO`, render: () => renderCategoryPage(categorySlug) };
   }
+
+  if (path.startsWith("/product/")) {
+    const productSlug = path.slice("/product/".length);
+    const product = PRODUCT_BY_SLUG[productSlug];
+    if (product) {
+      return { title: `${product.name} — BOMEYO`, render: () => renderProductDetail(productSlug) };
+    }
+  }
+
   return null;
 }
 
@@ -289,8 +312,12 @@ function renderRoute() {
   window.scrollTo(0, 0);
   initActiveNavLink(path);
 
-  if (path === "/") initHeroSlider();
+  initHeroAmbient();
   if (path === "/highlights") initHighlightsTabs();
+  if (path.startsWith("/product/")) {
+    const product = PRODUCT_BY_SLUG[path.slice("/product/".length)];
+    if (product) initProductDetail(product);
+  }
 }
 
 function initRouter() {

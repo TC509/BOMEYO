@@ -30,13 +30,34 @@ const CATEGORY_META = {
   "family-coords": { title: "The Family Co-ords", parent: "Wedding Collection" },
 };
 
+const SIZES = ["S", "M", "L", "XL"];
+
+function shirtImages(slug, count) {
+  const images = [];
+  for (let i = 1; i <= count; i++) {
+    images.push(`assets/img/products/women-ready-shirts/${slug}-${i}.jpg`);
+  }
+  return images;
+}
+
 /* Placeholder catalog. Swap in real products/images whenever they're ready. */
 const PRODUCTS = [
-  // Women / Ready to Wear
-  { name: "Ivory Poplin Shirt", price: 3200, category: "women-ready-shirts" },
-  { name: "Relaxed Linen Shirt", price: 3600, category: "women-ready-shirts" },
-  { name: "Striped Cotton Shirt", price: 2900, category: "women-ready-shirts" },
-  { name: "Oversized Denim Shirt", price: 3400, category: "women-ready-shirts" },
+  // Women / Ready to Wear — Shirts (real product photos)
+  { name: "B&W Mix Stripe", slug: "bw-mix-stripe", price: 5000, category: "women-ready-shirts", images: shirtImages("bw-mix-stripe", 2) },
+  { name: "Beige Nyishi", slug: "beige-nyishi", price: 5000, category: "women-ready-shirts", images: shirtImages("beige-nyishi", 2) },
+  { name: "Beige Pomo", slug: "beige-pomo", price: 5000, category: "women-ready-shirts", images: shirtImages("beige-pomo", 2) },
+  { name: "Black Crochet Galo", slug: "black-crochet-galo", price: 5000, category: "women-ready-shirts", images: shirtImages("black-crochet-galo", 3) },
+  { name: "Black Mix Stripe", slug: "black-mix-stripe", price: 5000, category: "women-ready-shirts", images: shirtImages("black-mix-stripe", 2) },
+  { name: "Bokar Multi", slug: "bokar-multi", price: 5000, category: "women-ready-shirts", images: shirtImages("bokar-multi", 1) },
+  { name: "Brown Crochet Galo", slug: "brown-crochet-galo", price: 5000, category: "women-ready-shirts", images: shirtImages("brown-crochet-galo", 3) },
+  { name: "Brown Line Mix", slug: "brown-line-mix", price: 5000, category: "women-ready-shirts", images: shirtImages("brown-line-mix", 2) },
+  { name: "Floral Bokar", slug: "floral-bokar", price: 5000, category: "women-ready-shirts", images: shirtImages("floral-bokar", 2) },
+  { name: "Monpa Bokar", slug: "monpa-bokar", price: 5000, category: "women-ready-shirts", images: shirtImages("monpa-bokar", 2) },
+  { name: "Mud Mix", slug: "mud-mix", price: 5000, category: "women-ready-shirts", images: shirtImages("mud-mix", 2) },
+  { name: "Neon Floral", slug: "neon-floral", price: 5000, category: "women-ready-shirts", images: shirtImages("neon-floral", 2) },
+  { name: "Peach Nyishi", slug: "peach-nyishi", price: 5000, category: "women-ready-shirts", images: shirtImages("peach-nyishi", 2) },
+  { name: "Printed Bokar", slug: "printed-bokar", price: 5000, category: "women-ready-shirts", images: shirtImages("printed-bokar", 2) },
+  { name: "TR Printed Bokar", slug: "tr-printed-bokar", price: 5000, category: "women-ready-shirts", images: shirtImages("tr-printed-bokar", 2) },
 
   { name: "Ribbed Knit Top", price: 2200, category: "women-ready-tops" },
   { name: "Sleeveless Wrap Top", price: 2500, category: "women-ready-tops" },
@@ -97,6 +118,10 @@ const PRODUCTS = [
   { name: "Pastel Family Co-ord", price: 4800, category: "family-coords" },
   { name: "Monochrome Family Co-ord", price: 5600, category: "family-coords" },
 ];
+
+const PRODUCT_BY_SLUG = Object.fromEntries(
+  PRODUCTS.filter((p) => p.slug).map((p) => [p.slug, p])
+);
 
 function formatPrice(price) {
   return "₹" + price.toLocaleString("en-IN");
