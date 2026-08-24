@@ -79,6 +79,14 @@
         <ul class="nav-menu">
           <li><a class="nav-link" href="#/highlights" data-route="/highlights">Highlights</a></li>
           <li>
+            <button class="nav-icon-link" type="button" aria-label="Search" data-search-open>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
+            </button>
+          </li>
+          <li>
             <a class="nav-icon-link" href="https://www.instagram.com/bomeyo.studio/" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="4" y="4" width="16" height="16" rx="4.5" />
@@ -107,10 +115,53 @@
     </div>
   </header>
 
+  <div class="search-overlay" data-search-overlay>
+    <div class="search-overlay-inner">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M21 21l-4.3-4.3" />
+        </svg>
+        <input type="text" placeholder="Search products" data-search-input autocomplete="off" />
+        <button type="button" class="search-close" aria-label="Close search" data-search-close>&#10005;</button>
+      </div>
+      <div class="search-results" data-search-results></div>
+    </div>
+  </div>
+
   <main id="app"></main>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">BOM&Egrave;YO</p>
+        <p>Ready to Wear and Wedding Collection, handcrafted from Northeast India.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#/women/ready-to-wear/shirts" data-route="/women/ready-to-wear/shirts">Women</a></li>
+          <li><a href="#/men/ready-to-wear/shirts" data-route="/men/ready-to-wear/shirts">Men</a></li>
+          <li><a href="#/collections" data-route="/collections">Collections</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#/story" data-route="/story">The Story</a></li>
+          <li><a href="#/highlights" data-route="/highlights">Highlights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:bomeyo.studio@gmail.com">bomeyo.studio@gmail.com</a></li>
+          <li><a href="tel:+917085800772">+91 7085800772</a></li>
+          <li><a href="https://www.instagram.com/bomeyo.studio/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-legal">
       <p>&copy; 2026 BOMEYO. All rights reserved.</p>
     </div>
   </footer>

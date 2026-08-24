@@ -37,14 +37,14 @@ function renderCategoryPage(slug) {
         ${price}
       `;
       return p.slug
-        ? `<a class="product-card" href="#/product/${p.slug}" data-route="/product/${p.slug}">${inner}</a>`
-        : `<div class="product-card">${inner}</div>`;
+        ? `<a class="product-card reveal" href="#/product/${p.slug}" data-route="/product/${p.slug}">${inner}</a>`
+        : `<div class="product-card reveal">${inner}</div>`;
     })
     .join("");
 
   return `
     <div class="container">
-      <div class="page-header">
+      <div class="page-header reveal">
         <h1>${meta.title}</h1>
       </div>
       <div class="product-grid">${cards || '<p class="empty-state">No products in this category yet.</p>'}</div>
@@ -67,7 +67,7 @@ function renderHome() {
   return `
     <section class="hero">
       <div class="hero-text">
-        <div class="hero-text-inner">
+        <div class="hero-text-inner reveal">
           <h1>About Us</h1>
           <p>The essence of BOM ÈYO stems from a passion for preserving and reimagining the rich textile traditions of Northeast India, especially those of Arunachal Pradesh.</p>
           <p>Here, every piece tells a story. Your story.</p>
@@ -90,11 +90,11 @@ function renderStory() {
   return `
     <div class="container">
       <div class="story-page">
-        <div class="story-photo">
+        <div class="story-photo reveal">
           <img src="assets/img/storydp.jpg" alt="Bompie Riram, Founder &amp; Creative Director of BOMÈYO" />
         </div>
-        <h1 class="story-title">Founder &amp; Creative Director of BOMÈYO</h1>
-        <div class="story-text">
+        <h1 class="story-title reveal">Founder &amp; Creative Director of BOMÈYO</h1>
+        <div class="story-text reveal">
           <p>BOM ÈYO was founded by Bompie Riram, who hails from Basar, Arunachal Pradesh, India. She graduated from NIFT Mumbai in 2013 with a degree in Textile Design. Today, the brand is based in Itanagar.</p>
           <p>The name BOM ÈYO is a sacred coalescence of "BOM," the designer's name, and "ÈYO," her late grandmother's name—an enduring tribute that weaves memory, heritage, and lineage into the fabric of the brand.</p>
         </div>
@@ -105,7 +105,7 @@ function renderStory() {
 
 function mediaCard(item) {
   return `
-    <div class="media-card">
+    <div class="media-card reveal">
       <div class="media-card-image">
         <img src="${item.image}" alt="${item.title}" loading="lazy" />
       </div>
@@ -162,7 +162,7 @@ const COLLECTIONS = [
 function renderCollections() {
   return `
     <div class="container">
-      <div class="page-header">
+      <div class="page-header reveal">
         <h1>Collections</h1>
         <p>Previous seasons, seasonal drops, and limited editions.</p>
       </div>
@@ -313,6 +313,7 @@ function renderRoute() {
   initActiveNavLink(path);
 
   initHeroAmbient();
+  initScrollReveal();
   if (path === "/highlights") initHighlightsTabs();
   if (path.startsWith("/product/")) {
     const product = PRODUCT_BY_SLUG[path.slice("/product/".length)];
