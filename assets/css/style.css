@@ -200,7 +200,6 @@ button {
   transform: translateY(6px);
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
   z-index: 50;
-  overflow: hidden;
 }
 
 .nav-side--right .dropdown {
