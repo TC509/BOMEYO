@@ -3,5 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initDropdowns();
   initNavScrollShrink();
   initSearch();
+  initCart();
   initRouter();
 });

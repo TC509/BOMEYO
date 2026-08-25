@@ -115,6 +115,35 @@
     </div>
   </header>
 
+  <button class="cart-button" type="button" aria-label="Cart" data-cart-open>
+    <span class="cart-button-label">Cart</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1.4" />
+      <circle cx="18" cy="21" r="1.4" />
+      <path d="M2.5 3h2.4l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21.5 7H6" />
+    </svg>
+    <span class="cart-count" data-cart-count hidden>0</span>
+  </button>
+
+  <div class="cart-overlay" data-cart-overlay>
+    <div class="cart-overlay-inner">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="search-close" type="button" aria-label="Close cart" data-cart-close>&#10005;</button>
+      </div>
+      <div class="cart-list" data-cart-list></div>
+      <div class="cart-checkout" data-cart-checkout hidden>
+        <button class="whatsapp-order-btn" type="button" data-cart-order>
+          <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+          </svg>
+          <span>Order via Whatsapp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="search-overlay" data-search-overlay>
     <div class="search-overlay-inner">
       <div class="search-field">
@@ -168,6 +197,7 @@
 
   <script src="assets/js/data.js"></script>
   <script src="assets/js/slider.js"></script>
+  <script src="assets/js/cart.js"></script>
   <script src="assets/js/product.js"></script>
   <script src="assets/js/router.js"></script>
   <script src="assets/js/nav.js"></script>

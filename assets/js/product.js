@@ -53,7 +53,14 @@ function productDetailMarkup(product) {
 
         <p class="size-warning" data-size-warning hidden>Please select a size first.</p>
 
-        <button class="whatsapp-order-btn" data-order-button>Order via Whatsapp</button>
+        <button class="add-to-cart-btn" data-add-to-cart>Add to Cart</button>
+        <button class="whatsapp-order-btn" data-order-button>
+          <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+          </svg>
+          <span>Order via Whatsapp</span>
+        </button>
       </div>
     </div>
   `;
@@ -124,6 +131,28 @@ function initProductDetail(product) {
       }
       const message = `Hello BOMEYO, I want to buy ${quantity} ${product.name} in size ${selectedSize}`;
       window.open(`https://wa.me/917085800772?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    });
+  }
+
+  const addToCartButton = document.querySelector("[data-add-to-cart]");
+  if (addToCartButton) {
+    const defaultLabel = addToCartButton.textContent;
+    let feedbackTimer = null;
+
+    addToCartButton.addEventListener("click", () => {
+      if (!selectedSize) {
+        if (sizeWarning) sizeWarning.hidden = false;
+        return;
+      }
+      addToCart(product, selectedSize, quantity);
+
+      clearTimeout(feedbackTimer);
+      addToCartButton.textContent = "Added to Cart";
+      addToCartButton.disabled = true;
+      feedbackTimer = setTimeout(() => {
+        addToCartButton.textContent = defaultLabel;
+        addToCartButton.disabled = false;
+      }, 1500);
     });
   }
 }
